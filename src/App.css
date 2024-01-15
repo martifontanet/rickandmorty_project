@@ -1,38 +1,315 @@
+/* IMPORTACIÓ DE FONTS */
+@font-face {
+  font-family: rickandmorty;
+  src: url(files/get_schwifty.ttf);
+}
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Nabla&family=Noto+Sans+Display:wght@200;400;700;900&display=swap');
+
+/*STYLE DE LA PÀGINA GENERAL*/
 .App {
   text-align: center;
+  text-decoration: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  text-align: center;
+  background-color: #1b202c;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#content.fixed{/*Per quan el menu es queda fixe, que no es mengi part del contingut*/
+  margin-top: 110px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*HEADER STYLE*/
+#header {
+  position: sticky;
+  padding-top: 7px;
+  top: 0;
+  z-index: 1000; 
+  background-color: #262c3a;
+  transition: all 0.3s;
+}
+
+#header.fixed {
+  position: fixed;
+  width: 100%;
+}
+
+/* CONFIGS DEL TITOL/LOGO */
+#header h1 {
+  padding: 25px 0px 25px 0px;
+  margin: 0;
+  font-size: 100px; 
+  transition: all 0.3s; 
+}
+
+#header.fixed h1 {
+  margin-top: 5px;
+  font-size: 30px; 
+  margin-left: 70px; 
+  padding: 0;
+  float: left;
+  transition: all 0.3s; 
+}
+
+.linkHeader{ /* STYLE DEL TITOL/LOGO */
+  font-family: rickandmorty;
+  color: #12aec5;
+  text-decoration: none;
+  -webkit-text-stroke-width: 0.001px; 
+  -webkit-text-stroke-color: #000;
+  text-shadow: 4px 0 #cbdf646c, -4px 0 #cbdf646c, 0 4px #cbdf646c, 0 -4px #cbdf646c,
+             2px 2px #cbdf646c, -2px -2px #cbdf646c, 2px -2px #cbdf646c, -2px 2px #cbdf646c;
+}
+
+.linkHeader2{ /* STYLE DEL TITOL/LOGO */
+  font-family: rickandmorty;
+  color: #12aec5;
+  text-decoration: none;
+  -webkit-text-stroke-width: 0.001px; 
+  -webkit-text-stroke-color: #cbdf64;
+  text-shadow: 6px 0 #000, -6px 0 #000, 0 6px #000, 0 -6px #000,
+             3px 3px #000, -3px -3px #000, 3px -3px #000, -3px 3px #000;
+}
+
+#header h1:hover{
+  color: #35bdd2;
+  font-size: 105px;
+  transition: all 0.3s; 
+}
+
+#header.fixed h1:hover {
+  font-size: 35px; 
+  transition: all 0.3s;
+}
+
+/* STYLE DEL LA ZONA DEL SEARCH BUTTONS/BAR */
+#searchDiv{
+  padding: 0px 0px 15px 0px;
+}
+.search{
+  background-color: #1d232f; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.search:hover{
+  background-color: #363f50; 
+
+}
+
+.searchBar{
+  background-color: #1d232f; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor:text;
+}
+
+/* STYLE DELS BUTTONS DE LA PAGINA */
+.buttonsDiv{
+  width: 100%;
+}
+
+.button{
+  width: 33%;
+  background-color: #252d3b; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.shortButton{
+  width: 200px;
+}
+
+.button:hover{
+  background-color: #363f50; 
+
+}
+
+/* STYLE DEL VIDEO */
+/* contenidor general per definir la posició del video  */
+.videowrapper {  
+  position: relative;
+  overflow: hidden;
+} 
+
+#fullScreenDiv {/* Contenidor delimitador del video */
+  min-height: 100%; 
+  height: 40vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  background-color: gray;
+  position: relative;
+}
+
+#video {/* styling del propi video */
+  width: auto; 
+  height: auto;
+  min-width: 100%; 
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: cover; 
+}
+
+#videoMessage { /*text de sobre el video*/
+  width: 100%; 
+  height: 100%;
+  position: absolute; 
+  top: 0; 
+  left: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  flex-direction: column;
+}
+
+#videoMessage h2 {
+  color: white;
+  background-color: #000;
+}
+
+/*STYLE DE LES LLISTES DE CARTES*/
+.ListPage{
+  text-decoration: none;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#ListHome div h2{
+  margin: 20px 0px 0px 70px;
+  font-size: 30px;
+  text-align: left;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ListPage h2{
+  font-size: 30px;
+}
+
+#charListHome{
+  vertical-align: middle;
+
+}
+
+.link{
+  text-decoration: none;
+  width: 90%;
+  color: white;
+}
+
+.link:hover{
+  width: 91%;
+}
+
+/*STYLE DE LES CARTES*/
+.charList{
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.charList3{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background-color: #262c3a;
+  width: 100%;
+  margin: 10px;
+  line-height: 75px;
+  font-size: 30px;
+  display: flex;
+}
+.card3 {
+  background-color: #262c3a;
+  width: 100%;
+  margin: 10px;
+  line-height: 75px;
+  height: auto;
+  font-size: 20px;
+  display: flex;
+}
+
+.card:hover {
+  background-color: #12adc5b7;
+  height: auto;
+  transition: all 0.3s; 
+}
+
+.card img{
+  width: 130px;
+  border: #262c3a solid 10px;
+}
+.card3 img{
+  width: 100px;
+  vertical-align: middle;
+  height: 100px;
+  border: #262c3a solid 10px;
+}
+
+.cardH3 {
+  text-align: left;
+  vertical-align: middle;
+  margin: 0px 0px 0px 25px;
+  line-height: 1.5;
+}
+
+.cardP {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 25px;
+  text-align: left;
+  margin-left: 25px;
+}
+
+.detailButton{
+  text-decoration: none;
+  padding: 15px;
+  margin: 20px 0px 20px 0px;
+  color: black;
+  background-color: white;
+}
+
+.error{
+  color: red;
+  text-align: center;
+}
+
+/*STYLE DEL FOOTER*/
+#footer{
+  color: rgb(92, 92, 92);
+  padding: 50px;
+}
+
+.detailPage{
+  text-decoration: none;
+  color: white;
 }
