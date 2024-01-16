@@ -14,18 +14,6 @@ function Header() {
           </Link>
         </h1>
           <Search/>
-          {/* <div class="buttonsDiv">
-            <Link to="/characters">
-              <button class="button button1">Characters</button>
-            </Link>
-            <Link to="/episodes">
-              <button class="button button2">Episodes</button>
-            </Link>
-            <Link to="/locations">
-              <button class="button button3">Locations</button>
-            </Link>
-          </div> */}
-        
       </div>
   );
 }

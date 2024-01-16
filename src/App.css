@@ -376,8 +376,8 @@ strong{
   text-decoration: none;
   padding: 15px;
   margin: 20px 0px 20px 0px;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #12adc599;
 }
 
 .error{
@@ -400,6 +400,7 @@ strong{
 }
 
 .detailPage{
+  margin: 50px 0 50px 0;
   text-decoration: none;
   color: white;
 }
@@ -429,4 +430,32 @@ strong{
 .button-33:hover {
   box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
   transform: scale(1.05) rotate(-1deg);
+}
+
+.button-33:disabled {
+  opacity: 0.5; /* Ajusta el valor de opacidad según tus preferencias */
+  cursor: not-allowed;
+}
+
+.material-icons{
+  font-size: 16px;
+  width: 16px;
+}
+
+.a{
+  transition: all 0.5s;
+}
+
+.returnBut{
+  text-decoration: none;
+  width: 100px;
+}
+
+.return{
+  margin: auto;
+  width: fit-content;
+}
+
+.return:hover .material-icons{
+  width: 26px;
 }
