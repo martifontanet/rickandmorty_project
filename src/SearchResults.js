@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Character from './comp/Character';
 import Location from './comp/Location';
 import Episode from './comp/Episode';
+import Filter from './comp/Filter';
 const SearchResults = ({match}) => {
   //const { searchTerm, topic } = useParams();
   const [list, setList] = useState([]);
@@ -10,7 +11,6 @@ const SearchResults = ({match}) => {
   const searchTerm = match.params.searchTerm;
   const [filter, setFilter] = useState([]);
   const [status, setStatus] = useState([]);
-  const [activeFilter,setFilterButton] = useState([]);
   let filtro1 = [];
   
   useEffect(() => {
@@ -37,23 +37,12 @@ const SearchResults = ({match}) => {
     setFilter(event.target.value);
   };
 
-  const clickFilter = (term, buttonId) => {
-    setFilter(term);
-    setFilterButton(buttonId)
-  };
-
   return (
     <div className="ListPage SearchPage">
       <h2>Search term: <strong>{searchTerm}</strong></h2>
       <div>
         {topic === 'character' && (
-          <div className='filterBar'>
-            <h2>Filter:</h2>
-            <button className={`${activeFilter === 1 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("",1)}>All</button>
-            <button className={`${activeFilter === 2 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("&status=alive",2)}>Alive</button>
-            <button className={`${activeFilter === 3 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("&status=dead",3)}>Dead</button>
-            <button className={`${activeFilter === 4 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("&status=unknown",4)}>Unknown</button>
-          </div>
+          <Filter setFilter = {setFilter} />
           )}
       {/* {topic === 'character' && (
           <select value={filter} onChange={handleTermChange}>

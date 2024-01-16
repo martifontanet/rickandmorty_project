@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Character from './comp/Character';
+import Filter from './comp/Filter';
 import { Link } from 'react-router-dom';
 
 const CharactersList = () => {
   const [fullist, setList] = useState([]);
   const [prev, setPrev] = useState('');
   const [next, setNext] = useState('');
-  const [apiKey, setKey] = useState('https://rickandmortyapi.com/api/character/?page=1');
+  const [filter, setFilter] = useState([]);
+  const [apiKey, setKey] = useState(`https://rickandmortyapi.com/api/character/?page=1`);
   const [uniqueSpecies, setUniqueSpecies] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(apiKey);
+        const response = await fetch(apiKey+filter);
         const data = await response.json();
 
         setList(data.results);
@@ -34,7 +36,7 @@ const CharactersList = () => {
     };
 
     fetchData();
-  }, [apiKey]);
+  }, [apiKey,filter]);
 
   const handleButtonClick = () => {
     window.scrollTo({ top: 5, behavior: 'smooth' });
@@ -49,6 +51,7 @@ const CharactersList = () => {
         ))}
       </div> */}
       <h2>Characters List</h2>
+      <Filter setFilter = {setFilter} />
       <div className='characterList'>
         {fullist.map((character) => (
           <Link key={character.id} className="linkChar" to={`/character/${character.id}`}>
