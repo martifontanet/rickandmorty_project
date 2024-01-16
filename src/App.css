@@ -122,6 +122,43 @@ strong{
   margin: 4px 2px;
   cursor:text;
 }
+.filterBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+.filterButton{
+  height: 80%;
+  width: 100px;
+  margin: 0px 5px;
+  /* border-color: #8BCF21; */
+  border-color: #cbdf64;
+  border-radius: 5px;
+  background-color: #1d232f;
+  color: white; 
+  font-family: 'Dosis', sans-serif;
+  font-size: 20px;
+}
+.filterButton:hover{
+  background-color: #cbdf64;
+  color: #1d232f;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.filterButtonActive{
+  background-color: #cbdf64;
+  color: #1d232f;
+  cursor: pointer;
+  height: 80%;
+  width: 100px;
+  margin: 0px 5px;
+  border-radius: 5px;
+  border-color: #cbdf64;
+  font-family: 'Dosis', sans-serif;
+  font-size: 20px;
+}
 
 /* STYLE DELS BUTTONS DE LA PAGINA */
 .buttonsDiv{

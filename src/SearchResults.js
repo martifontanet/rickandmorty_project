@@ -10,6 +10,7 @@ const SearchResults = ({match}) => {
   const searchTerm = match.params.searchTerm;
   const [filter, setFilter] = useState([]);
   const [status, setStatus] = useState([]);
+  const [activeFilter,setFilterButton] = useState([]);
   let filtro1 = [];
   
   useEffect(() => {
@@ -36,22 +37,37 @@ const SearchResults = ({match}) => {
     setFilter(event.target.value);
   };
 
+  const clickFilter = (term, buttonId) => {
+    setFilter(term);
+    setFilterButton(buttonId)
+  };
+
   return (
     <div className="ListPage SearchPage">
       <h2>Search term: <strong>{searchTerm}</strong></h2>
       <div>
-      {topic === 'character' && (
+        {topic === 'character' && (
+          <div className='filterBar'>
+            <h2>Filter:</h2>
+            <button className={`${activeFilter === 1 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("",1)}>All</button>
+            <button className={`${activeFilter === 2 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("&status=alive",2)}>Alive</button>
+            <button className={`${activeFilter === 3 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("&status=dead",3)}>Dead</button>
+            <button className={`${activeFilter === 4 ? 'filterButtonActive' : 'filterButton'}`} onClick={() => clickFilter("&status=unknown",4)}>Unknown</button>
+          </div>
+          )}
+      {/* {topic === 'character' && (
           <select value={filter} onChange={handleTermChange}>
-            {/*{filtro1.map((species, index) => (
+            {filtro1.map((species, index) => (
               <option key={index} value={`&status=${species}`}>{species}</option>
             ))}
 
-           ESTO ESTA A MEDIAS, PARA PONER AUTOMATICO LOS FILTROS*/}
+           ESTO ESTA A MEDIAS, PARA PONER AUTOMATICO LOS FILTROS
+            <option value="">All</option>
             <option value="&status=alive">Alive</option>
             <option value="&status=dead">Dead</option>
             <option value="&status=unknown">Unknown</option>
           </select>
-        )}
+        )}  */}
         <div className="characterList">
         
         {topic === 'character'? (
