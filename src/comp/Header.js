@@ -8,12 +8,13 @@ import Search from './Search';
 function Header() {
   return (
       <div id="header">
-        <h1 >
-          <Link className="linkHeader" to="/">
+        <h2>
+          {/* Texto de titulo de cabecera que nos va a dirigir siempre a la home */}
+          <Link className="linkHeader" to="/"> 
             RICK AND MORTY
           </Link>
-        </h1>
-          <Search/>
+        </h2>
+          <Search/> {/* Incluimos el script de search en un componente externo */}
       </div>
   );
 }

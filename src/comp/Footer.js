@@ -1,12 +1,11 @@
 import React from 'react';
 
 function Footer() {
-    return (
+    return ( //Pequeña descripcion de los integrantes y la asignatura
         <div>
-        <hr></hr>
-            <div id="footer">
+            <div id="footer"> 
                 <p className='verd'>Franck He Cai & Martí Fontanet</p>
-                <p className='blau'>AWUG II PROJECT</p>
+                <p className='blau'>AWUG I PROJECT</p>
             </div>
         </div>
         

@@ -69,9 +69,12 @@ const EpisodeDetails = ({ match }) => {
       ) : (
         <>
           <div className="detailPage">
+          <Link class='returnBut' to='/episodes'>
+            <p  className='return a verd'><i className={`material-icons`}>arrow_backward</i> All episodes  </p>
+          </Link>
             <div id={`episode_${detail.id}`}>
               <h2 className="detailSpecies">Season {season} - Episode {episode}</h2>
-              <h1>{detail.name}</h1>
+              <h1 className='blau'>{detail.name}</h1>
               <p className="detailGender">Release date : {detail.air_date}</p>
               <p className="detailButton">Characters featured</p>
               <div className="characterList" ref={characterListRef}>

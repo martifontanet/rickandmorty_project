@@ -5,7 +5,7 @@ import Episode from './comp/Episode';
 import { Link } from 'react-router-dom';
 
 const EpisodesList = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([]); // variable donde guardaremos los datos del fetch
   const [prev, setPrev] = useState('');
   const [next, setNext] = useState('');
   const [apiKey, setKey] = useState('https://rickandmortyapi.com/api/episode/?page=1');

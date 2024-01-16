@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Character from './comp/Character';
 import Location from './comp/Location';
 import Episode from './comp/Episode';
 import Filter from './comp/Filter';
-const SearchResults = ({match}) => {
-  //const { searchTerm, topic } = useParams();
+
+const SearchResults = ({ match }) => {
   const [list, setList] = useState([]);
   const topic = match.params.topic;
   const searchTerm = match.params.searchTerm;
   const [filter, setFilter] = useState([]);
   const [status, setStatus] = useState([]);
   let filtro1 = [];
-  
+
   useEffect(() => {
     const fetchSearch = async () => {
       try {
-        const response = await fetch(`https://rickandmortyapi.com/api/${topic}/?name=${searchTerm+filter}`);
+        const response = await fetch(`https://rickandmortyapi.com/api/${topic}/?name=${searchTerm + filter}`);
         const data = await response.json();
-        setList(data.results);
+        setList(data.results || []); // Asegúrate de que data.results esté definido o asigna un array vacío
 
-        const uniqueStatus = data.results.map(item => item.status);
+        const uniqueStatus = data.results?.map(item => item.status) || [];
 
         // Count unique species values using Set
         const status = [...new Set(uniqueStatus)];
@@ -31,7 +31,8 @@ const SearchResults = ({match}) => {
     };
 
     fetchSearch();
-  }, [topic, searchTerm,filter]);
+  }, [topic, searchTerm, filter]);
+
   const handleTermChange = (event) => {
     filtro1 = status;
     setFilter(event.target.value);
@@ -42,43 +43,24 @@ const SearchResults = ({match}) => {
       <h2>Search term: <strong>{searchTerm}</strong></h2>
       <div>
         {topic === 'character' && (
-          <Filter setFilter = {setFilter} />
-          )}
-      {/* {topic === 'character' && (
-          <select value={filter} onChange={handleTermChange}>
-            {filtro1.map((species, index) => (
-              <option key={index} value={`&status=${species}`}>{species}</option>
-            ))}
-
-           ESTO ESTA A MEDIAS, PARA PONER AUTOMATICO LOS FILTROS
-            <option value="">All</option>
-            <option value="&status=alive">Alive</option>
-            <option value="&status=dead">Dead</option>
-            <option value="&status=unknown">Unknown</option>
-          </select>
-        )}  */}
-        <div className="characterList">
-        
-        {topic === 'character'? (
-          list.map(character => (
-            <Link key={character.id} className="linkChar" to={`/character/${character.id}`} keyword={searchTerm}>
-               <Character id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
-            </Link>
-          ))
-        ) : topic === 'location'? (
-          list.map((location) => (
-            <Link key={location.id} className="link" to={`/locations/${location.id}`}>
-              <Location id={location.id} name={location.name} type={location.type} dimension={location.dimension} />
-            </Link>
-          ))
-        ) : (
-          list.map((episode) => (
-            <Link key={episode.id} className="link" to={`/episode/${episode.id}`}>
-              <Episode id={episode.id} name={episode.name} characters={episode.characters} date={episode.created} />
-            </Link>
-          ))
+          <Filter setFilter={setFilter} />
         )}
-          
+        <div className="characterList">
+          {list.length === 0 ? (
+            <p className='error'>No results found</p>
+          ) : (
+            list.map(item => (
+              <Link key={item.id} className="linkChar" to={`/${topic}/${item.id}`} keyword={searchTerm}>
+                {topic === 'character' ? (
+                  <Character id={item.id} name={item.name} image={item.image} status={item.status} species={item.species} />
+                ) : topic === 'location' ? (
+                  <Location id={item.id} name={item.name} type={item.type} dimension={item.dimension} />
+                ) : (
+                  <Episode id={item.id} name={item.name} characters={item.characters} date={item.created} />
+                )}
+              </Link>
+            ))
+          )}
         </div>
       </div>
     </div>
@@ -86,4 +68,3 @@ const SearchResults = ({match}) => {
 };
 
 export default SearchResults;
-

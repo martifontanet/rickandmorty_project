@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Search = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [topic, setTopic] = useState('character');
+  const [searchTerm, setSearchTerm] = useState(''); // guardamos el término de busqueda del usuario
+  const [topic, setTopic] = useState('character');  // guardamos la categoria de busqueda del usuario
 
-  const handleChange = (event) => {
+  const handleChange = (event) => {  // inicializamos funciones para que se ejecuten cada vez que el usuario modifica alguna letra o parámetro
     setSearchTerm(event.target.value);
   };
 
@@ -15,29 +15,28 @@ const Search = () => {
 
   return (
     <div id="searchDiv">
-      <form>
-      <select value={topic} className="search searchSelect" onChange={handleTopicChange}>
-        <option value="character">Characters</option>
-        <option value="episode">Episodes</option>
-        <option value="location">Locations</option>
-      </select>
-      <input
-        className='search searchBar'
-        type="text"
-        placeholder={`Search ${topic}s`}
-        value={searchTerm}
-        onChange={handleChange}
-      />
+      <form> {/* Creamos un formulario para recolectar los criterios de búsqueda */}
+        <select value={topic} className="search searchSelect" onChange={handleTopicChange}>
+          <option value="character">Characters</option>
+          <option value="episode">Episodes</option>
+          <option value="location">Locations</option>
+        </select>
+        <input
+          className='search searchBar'
+          type="text"
+          placeholder={`Search ${topic}s`}
+          value={searchTerm}
+          onChange={handleChange}
+        />
       
-      <Link to={`/searchResult/${topic}/${searchTerm}`}>
-        <button type="submit" className='search searchButton'>Search</button>
-      </Link>
+        <Link to={`/searchResult/${topic}/${searchTerm}`}> {/* Pasamos los parametros de busqueda por la url de la web */}
+          <button type="submit" className='search searchButton' disabled={!searchTerm}>
+            Search
+          </button>
+        </Link>
       </form>
     </div>
-    
   );
 };
 
 export default Search;
-
-

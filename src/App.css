@@ -3,8 +3,9 @@
   font-family: rickandmorty;
   src: url(files/get_schwifty.ttf);
 }
-@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Nabla&family=Noto+Sans+Display:wght@200;400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap');
+
+
 /*STYLE DE LA PÀGINA GENERAL*/
 .App {
   text-align: center;
@@ -41,14 +42,14 @@ strong{
 }
 
 /* CONFIGS DEL TITOL/LOGO */
-#header h1 {
+#header h2 {
   padding: 25px 0px 25px 0px;
   margin: 0;
   font-size: 100px; 
   transition: all 0.3s; 
 }
 
-#header.fixed h1 {
+#header.fixed h2 {
   margin-top: 5px;
   font-size: 30px; 
   margin-left: 70px; 
@@ -77,13 +78,13 @@ strong{
              3px 3px #000, -3px -3px #000, 3px -3px #000, -3px 3px #000;
 }
 
-#header h1:hover{
+#header h2:hover{
   color: #35bdd2;
   font-size: 105px;
   transition: all 0.3s; 
 }
 
-#header.fixed h1:hover {
+#header.fixed h2:hover {
   font-size: 35px; 
   transition: all 0.3s;
 }
@@ -375,20 +376,23 @@ strong{
 .detailButton{
   text-decoration: none;
   padding: 15px;
-  margin: 20px 0px 20px 0px;
+  margin: 70px 0px 70px 0px;
   color: white;
   background-color: #12adc599;
 }
 
-.error{
+.error{ /* per a tots els missatges d'alerta */
   color: red;
   text-align: center;
 }
 
 /*STYLE DEL FOOTER*/
 #footer{
+  border-top: #fff solid 2px;
+  background-color: #262c3a;
   color: rgb(92, 92, 92);
   padding: 50px;
+  margin-top: 70px;
 }
 
 .verd{
@@ -405,7 +409,7 @@ strong{
   color: white;
 }
 
-/* CSS */
+/* CSS button extret de la pagina web https://getcssscan.com/css-buttons-examples */
 .button-33 {
   margin: auto;
   height: 50px;
@@ -437,12 +441,12 @@ strong{
   cursor: not-allowed;
 }
 
-.material-icons{
+.material-icons{ /* al document d'index hem importat la llibreria d'icones de google */
   font-size: 16px;
   width: 16px;
 }
 
-.a{
+.t{
   transition: all 0.5s;
 }
 
@@ -452,10 +456,50 @@ strong{
 }
 
 .return{
-  margin: auto;
+  margin: 0 auto 50px auto;
   width: fit-content;
 }
 
 .return:hover .material-icons{
   width: 26px;
+}
+
+.load{
+  background-color: #12adc599;
+  width: 25%;
+}
+.load:hover{
+  background-color: #34cce399;
+  width: 27%;
+}
+
+.searchButton{
+  background-color: #12adc599;
+}
+
+.searchButton:hover{
+  background-color: #34cce399;
+}
+
+.searchButton:disabled{
+  background-color: #1d232f;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.searchButton:disabled:hover{
+  background-color: #1d232f;
+  
+}
+
+.margin{
+  margin: 100px 0 100px 0;
+}
+
+.margin2{
+  margin: 50px 0 50px 0;
+}
+
+.detailtxt{
+  margin: 30px auto 30px auto;
 }

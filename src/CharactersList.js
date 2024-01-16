@@ -11,7 +11,7 @@ const CharactersList = () => {
   const [filter, setFilter] = useState([]);
   const [apiKey, setKey] = useState(`https://rickandmortyapi.com/api/character/?page=1`);
   const [uniqueSpecies, setUniqueSpecies] = useState([]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

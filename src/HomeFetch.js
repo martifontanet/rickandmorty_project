@@ -7,9 +7,9 @@ import videoSource from './files/video.webm';
 import { Link } from 'react-router-dom';
 
 const HomeFetch = () => {
-  const [list1, setList1] = useState([]);
-  const [list2, setList2] = useState([]);
-  const [list3, setList3] = useState([]);
+  const [list1, setList1] = useState([]); // variable1 donde guardaremos los datos del fetch
+  const [list2, setList2] = useState([]); // variable2 donde guardaremos los datos del fetch
+  const [list3, setList3] = useState([]); // variable3 donde guardaremos los datos del fetch
 
   const generateRandomNumbers = (min, max, count) => {
     const numbers = [];
@@ -78,6 +78,7 @@ const HomeFetch = () => {
           </div>   
         </div>
       </div>
+      <div className='margin'>
         <div id='charListHome'>
             <h2>Characters</h2>
             <div className='characterList'>
@@ -88,36 +89,38 @@ const HomeFetch = () => {
                 ))}
             </div>
             <Link to='/characters'>
-              <button class='button button1'><span>Load More <i class="material-icons">add</i></span></button>
+              <button class='button load t'><span>Load More</span></button>
             </Link>
+          </div>
+          <div id='locListHome'>
+              <h2>Locations</h2>
+              <div className='characterList'>
+                  {list2.map((location) => (
+                      <Link key={location.id} className='link' to={`/locations/${location.id}`}>
+                          <Location id={location.id} name={location.name} type={location.type} dimension={location.dimension} />
+                      </Link>
+                  ))}
+              </div>
+              <Link to='/locations'>
+                <button class='button load t'>Load More</button>
+              </Link>
+          </div>
+          <div id='epiListHome'>
+              <h2>Episodes</h2>
+              <div className='characterList'>
+                  {list3.map((episode) => (
+                      <Link key={episode.id} className='link' to={`/episodes/${episode.id}`}>
+                          <Episode id={episode.id} name={episode.name} characters={episode.characters} date={episode.air_date} />
+                      </Link>
+                  ))}
+              </div>
+              <Link to='/episodes'>
+                <button className='button load t'>Load More</button>
+              </Link>
+          </div>
         </div>
-        <div id='locListHome'>
-            <h2>Locations</h2>
-            <div className='characterList'>
-                {list2.map((location) => (
-                    <Link key={location.id} className='link' to={`/locations/${location.id}`}>
-                        <Location id={location.id} name={location.name} type={location.type} dimension={location.dimension} />
-                    </Link>
-                ))}
-            </div>
-            <Link to='/locations'>
-              <button class='button button2'>Load More ➕</button>
-            </Link>
-        </div>
-        <div id='epiListHome'>
-            <h2>Episodes</h2>
-            <div className='characterList'>
-                {list3.map((episode) => (
-                    <Link key={episode.id} className='link' to={`/episodes/${episode.id}`}>
-                        <Episode id={episode.id} name={episode.name} characters={episode.characters} date={episode.air_date} />
-                    </Link>
-                ))}
-            </div>
-            <Link to='/episodes'>
-              <button className='button button2'>Load More ➕</button>
-            </Link>
-        </div>
-    </div>
+      </div>
+      
   );
 };
 
