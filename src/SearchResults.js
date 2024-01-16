@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Character from './Character';
-import Location from './Location';
-import Episode from './Episode';
+import Character from './comp/Character';
+import Location from './comp/Location';
+import Episode from './comp/Episode';
 const SearchResults = ({match}) => {
   //const { searchTerm, topic } = useParams();
   const [list, setList] = useState([]);
@@ -38,10 +38,9 @@ const SearchResults = ({match}) => {
 
   return (
     <div className="ListPage SearchPage">
-      <h2>Search term: {searchTerm}</h2>
+      <h2>Search term: <strong>{searchTerm}</strong></h2>
       <div>
-        <div className="charList">
-        {topic === 'character' && (
+      {topic === 'character' && (
           <select value={filter} onChange={handleTermChange}>
             {/*{filtro1.map((species, index) => (
               <option key={index} value={`&status=${species}`}>{species}</option>
@@ -53,9 +52,11 @@ const SearchResults = ({match}) => {
             <option value="&status=unknown">Unknown</option>
           </select>
         )}
+        <div className="characterList">
+        
         {topic === 'character'? (
           list.map(character => (
-            <Link key={character.id} className="link" to={`/character/${character.id}`} keyword={searchTerm}>
+            <Link key={character.id} className="linkChar" to={`/character/${character.id}`} keyword={searchTerm}>
                <Character id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
             </Link>
           ))

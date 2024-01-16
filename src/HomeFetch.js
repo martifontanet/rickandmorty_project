@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Character from './Character';
-import Location from './Location';
-import Episode from './Episode';
+import Character from './comp/Character';
+import Location from './comp/Location';
+import Episode from './comp/Episode';
+import videoSource from './files/video.webm';
 import { Link } from 'react-router-dom';
 
 const HomeFetch = () => {
@@ -69,22 +70,30 @@ const HomeFetch = () => {
 
   return (
     <div id='ListHome'>
+      <div className="videowrapper">
+        <div id="fullScreenDiv">
+          <video src={videoSource}  id="video" role="presentation" preload="auto" crossorigin="anonymous" loop="1"  autoplay="" className="blur" muted playsinline></video>
+          <div id="videoMessage" class="styling"> 
+              <h2>[Adult Swim]</h2>
+          </div>   
+        </div>
+      </div>
         <div id='charListHome'>
             <h2>Characters</h2>
-            <div className='charList'>
+            <div className='characterList'>
                 {list1.map((character) => (
-                <Link key={character.id} className='link' to={`/character/${character.id}`}>
+                <Link key={character.id} className='linkChar' to={`/character/${character.id}`}>
                     <Character id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
                 </Link>
                 ))}
             </div>
             <Link to='/characters'>
-              <button class='button button1'>Load More ➕</button>
+              <button class='button button1'><span>Load More <i class="material-icons">add</i></span></button>
             </Link>
         </div>
         <div id='locListHome'>
             <h2>Locations</h2>
-            <div className='charList'>
+            <div className='characterList'>
                 {list2.map((location) => (
                     <Link key={location.id} className='link' to={`/locations/${location.id}`}>
                         <Location id={location.id} name={location.name} type={location.type} dimension={location.dimension} />
@@ -97,7 +106,7 @@ const HomeFetch = () => {
         </div>
         <div id='epiListHome'>
             <h2>Episodes</h2>
-            <div className='charList'>
+            <div className='characterList'>
                 {list3.map((episode) => (
                     <Link key={episode.id} className='link' to={`/episodes/${episode.id}`}>
                         <Episode id={episode.id} name={episode.name} characters={episode.characters} date={episode.air_date} />

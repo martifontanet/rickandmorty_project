@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Char_IMG from './Char_IMG';
+import Char_IMG from './comp/Char_IMG';
 
 const LocationDetails = ({ match }) => {
   const [locationData, setLocationData] = useState({});

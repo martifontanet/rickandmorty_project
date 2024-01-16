@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Character from './Character';
+import Character from './comp/Character';
 import { Link } from 'react-router-dom';
 
 const CharactersList = () => {
@@ -37,7 +37,7 @@ const CharactersList = () => {
   }, [apiKey]);
 
   const handleButtonClick = () => {
-    window.scrollTo({ top: 300, behavior: 'smooth' });
+    window.scrollTo({ top: 20, behavior: 'smooth' });
   };
 
   return (
@@ -49,9 +49,9 @@ const CharactersList = () => {
         ))}
       </div> */}
       <h2>Characters List</h2>
-      <div className='charList'>
+      <div className='characterList'>
         {fullist.map((character) => (
-          <Link key={character.id} className="link" to={`/character/${character.id}`}>
+          <Link key={character.id} className="linkChar" to={`/character/${character.id}`}>
             <Character id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
           </Link>
         ))}

@@ -4,7 +4,7 @@
   src: url(files/get_schwifty.ttf);
 }
 @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Nabla&family=Noto+Sans+Display:wght@200;400;700;900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap');
 /*STYLE DE LA PÀGINA GENERAL*/
 .App {
   text-align: center;
@@ -14,6 +14,11 @@
 body{
   text-align: center;
   background-color: #1b202c;
+  font-family: 'Dosis', sans-serif;
+}
+strong{
+  color: #cbdf64;
+  font-weight: 700;
 }
 
 #content.fixed{/*Per quan el menu es queda fixe, que no es mengi part del contingut*/
@@ -136,6 +141,7 @@ body{
   margin: 4px 2px;
   cursor: pointer;
 }
+
 .shortButton{
   width: 200px;
 }
@@ -213,6 +219,25 @@ body{
 
 }
 
+.linkChar{
+ width: fit-content;
+ text-decoration: none;
+ color: white;
+}
+
+.linkChar:hover{
+  background-color: #12adc583;
+  color: white;
+ }
+
+ .linkChar:hover img{
+  width: 135px;
+  opacity: 0.8;
+ }
+ .linkChar:hover h3, .card:hover h3{
+  color: #cbdf64;
+ }
+
 .link{
   text-decoration: none;
   width: 90%;
@@ -224,6 +249,12 @@ body{
 }
 
 /*STYLE DE LES CARTES*/
+.characterList{
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
 .charList{
   display: grid;
   grid-template-columns: auto auto;
@@ -248,6 +279,20 @@ body{
   font-size: 30px;
   display: flex;
 }
+
+.cardd{
+  margin: 10px
+}
+
+#chaCa{
+  width: fit-content;
+}
+
+#chaCa p, #chaCa h3{
+  text-align: center;
+  margin: 0;
+}
+
 .card3 {
   background-color: #262c3a;
   width: 100%;
@@ -264,7 +309,7 @@ body{
   transition: all 0.3s; 
 }
 
-.card img{
+.card img, .cardd img{
   width: 130px;
   border: #262c3a solid 10px;
 }
@@ -285,9 +330,9 @@ body{
 .cardP {
   margin: 0;
   line-height: 1.7;
-  font-size: 25px;
   text-align: left;
   margin-left: 25px;
+  color: #b7b7b7;
 }
 
 .detailButton{

@@ -12,11 +12,10 @@ import LocationList from './LocationList';
 import LocationDetail from './LocationDetail';
 import SearchResults from './SearchResults';
 import './App.css';
-import Header from './Header';
-import videoSource from './files/video.webm';
+import Header from './comp/Header';
 import HomeFetch from './HomeFetch';
-import Footer from './Footer';
-import ScrollToTop from './ScrollToTop';
+import Footer from './comp/Footer';
+import ScrollToTop from './comp/ScrollToTop';
 
 
 function App() {
@@ -52,14 +51,6 @@ function App() {
         </div>
         <div id="content">
           <body>
-            <div className="videowrapper">
-              <div id="fullScreenDiv">
-                <video src={videoSource}  id="video" role="presentation" preload="auto" crossorigin="anonymous" loop="1"  autoplay="" className="blur" muted playsinline></video>
-                <div id="videoMessage" class="styling"> 
-                    <h2>[Adult Swim]</h2>
-                </div>   
-              </div>
-            </div>
             <Switch>
               <Route exact path="/characters" component={CharactersList} />
               <Route path="/character/:char_Id" component = {CharacterDetails}/>

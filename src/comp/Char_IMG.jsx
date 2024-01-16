@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
+import '../App.css';
 
 const Char_IMG = ({character}) => {
   const [Char_Info, setInfo] = useState([]);
