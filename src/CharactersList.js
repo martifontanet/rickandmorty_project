@@ -37,7 +37,7 @@ const CharactersList = () => {
   }, [apiKey]);
 
   const handleButtonClick = () => {
-    window.scrollTo({ top: 20, behavior: 'smooth' });
+    window.scrollTo({ top: 5, behavior: 'smooth' });
   };
 
   return (

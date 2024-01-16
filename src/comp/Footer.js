@@ -5,8 +5,8 @@ function Footer() {
         <div>
         <hr></hr>
             <div id="footer">
-                <p>Franck He Cai & Martí Fontanet</p>
-                <p>AWUG II PROJECT</p>
+                <p className='verd'>Franck He Cai & Martí Fontanet</p>
+                <p className='blau'>AWUG II PROJECT</p>
             </div>
         </div>
         
