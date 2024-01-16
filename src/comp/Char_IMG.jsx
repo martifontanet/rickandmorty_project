@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import '../App.css';
 
-const Char_IMG = ({character}) => {
-  const [Char_Info, setInfo] = useState([]);
+const Char_IMG = ({ character }) => {
+  const [Char_Info, setInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,17 +28,16 @@ const Char_IMG = ({character}) => {
         <p>Loading...</p>
       ) : (
         <Link className="link" to={`/character/${Char_Info.id}`}>
-            <div className="card card3" id={`player_${Char_Info.id}`}>
+          <div className="cardd" id={`player_${Char_Info.id}`}>
+            <div id="chaCa">
               <img src={Char_Info.image} alt="charIMG"></img>
-              <h2 className="cardH3">{`${Char_Info.name}`}</h2>
+              <h3 className="cardH3">{`${Char_Info.name}`}</h3>
             </div>
+          </div>
         </Link>
       )}
-        
-        
     </div>
   );
 };
 
 export default Char_IMG;
-
