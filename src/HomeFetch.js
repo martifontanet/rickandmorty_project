@@ -98,7 +98,7 @@ const HomeFetch = () => {
               <h2>Locations</h2>
               <div className='characterList'>
                   {list2.map((location) => (
-                      <Link key={location.id} className='link' to={`/locations/${location.id}`}>
+                      <Link key={location.id} className='link' to={`/location/${location.id}`}>
                           <Location id={location.id} name={location.name} type={location.type} dimension={location.dimension} />
                       </Link>
                   ))}
@@ -111,7 +111,7 @@ const HomeFetch = () => {
               <h2>Episodes</h2>
               <div className='characterList'>
                   {list3.map((episode) => (
-                      <Link key={episode.id} className='link' to={`/episodes/${episode.id}`}>
+                      <Link key={episode.id} className='link' to={`/episode/${episode.id}`}>
                           <Episode id={episode.id} name={episode.name} characters={episode.characters} date={episode.air_date} />
                       </Link>
                   ))}

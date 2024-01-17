@@ -44,7 +44,7 @@ const EpisodesList = () => {
       </div>
       <div className='charList'>
         {list.map((episode) => (
-          <Link key={episode.id} className="link" to={`/episodes/${episode.id}`}>
+          <Link key={episode.id} className="link" to={`/episode/${episode.id}`}>
             <Episode id={episode.id} name={episode.name} characters={episode.characters} date={episode.air_date} />
           </Link>
         ))}

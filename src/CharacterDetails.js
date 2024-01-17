@@ -78,7 +78,7 @@ const CharacterDetails = ({ match }) => { //recuperamos la variable
                 </div>
                 <div>
                   <h3>
-                    <Link className="detailButton load" to={`/locations/${getId(detail.location.url)}`}>
+                    <Link className="detailButton load" to={`/location/${getId(detail.location.url)}`}>
                     <span>&#128205;</span> {detail.location.name}
                     </Link>
                   </h3>

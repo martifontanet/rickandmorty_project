@@ -35,7 +35,7 @@ const LocationList = () => {
       <h2>Locations List</h2>
       <div className="charList">
         {list.map((location) => (
-          <Link key={location.id} className="link" to={`/locations/${location.id}`}>
+          <Link key={location.id} className="link" to={`/location/${location.id}`}>
             <Location id={location.id} name={location.name} type={location.type} dimension={location.dimension} />
           </Link>
         ))}

@@ -62,9 +62,9 @@ function App() {
               <Route exact path="/characters" component={CharactersList} />
               <Route path="/character/:char_Id" component = {CharacterDetails}/>
               <Route exact path="/episodes" component={EpisodesList} />
-              <Route path="/episodes/:episode_Id" component={EpisodeDetails}/>
+              <Route path="/episode/:episode_Id" component={EpisodeDetails}/>
               <Route exact path="/locations" component={LocationList}/>
-              <Route path="/locations/:location_Id" component={LocationDetail}/>
+              <Route path="/location/:location_Id" component={LocationDetail}/>
               <Route path="/searchResult/:topic/:searchTerm" component={SearchResults}/>
               <Route path="/charactersfilt" component={filterCharacter} />
               <Route exact path="/" render={() => <HomeFetch />} />
