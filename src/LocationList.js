@@ -4,7 +4,7 @@ import Location from './comp/Location';
 import { Link } from 'react-router-dom';
 
 const LocationList = () => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([]); //Lo mismo que los otros componentes de Listas
   const [prev, setPrev] = useState('');
   const [next, setNext] = useState('');
   const [apiKey, setKey] = useState('https://rickandmortyapi.com/api/location/?page=1');

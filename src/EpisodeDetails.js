@@ -4,6 +4,7 @@ import Char_IMG from './comp/Char_IMG';
 import portal from './files/portal.png';
 
 const EpisodeDetails = ({ match }) => {
+  // Definimos estados para almacenar los datos de la ubicación, filtrar y controlar el estado del fetch
   const [detail, setDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [season, setSeason] = useState('');
@@ -11,7 +12,7 @@ const EpisodeDetails = ({ match }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [charactersPerPage, setCharactersPerPage] = useState(0);
 
-  const characterListRef = useRef(null);
+  const characterListRef = useRef(null); // Referenciamos al contenedor de la lista de personajes
 
   useEffect(() => {
     const fetchCharacterDetail = async () => {
@@ -36,37 +37,41 @@ const EpisodeDetails = ({ match }) => {
     fetchCharacterDetail();
   }, [match.params.episode_Id]);
 
+  // Funcion que usamos para calcular los personajes visibles cuando cambia el ancho de la ventana
   useEffect(() => {
     const calculateVisibleCharacters = () => {
       const characterListContainer = characterListRef.current;
       if (characterListContainer) {
-        const charactersPerPage = Math.floor(characterListContainer.offsetWidth / 200); // Ajusta el ancho según tus necesidades
+        // Ajustamos el ancho que queremos que ocupe gracias al calculo del ancho del contenedor
+        const charactersPerPage = Math.floor(characterListContainer.offsetWidth / 200);
         setCharactersPerPage(charactersPerPage);
         setCurrentIndex((prevIndex) => (prevIndex % charactersPerPage));
       }
     };
 
+    //Añadimos un listener a las dimensiones de la ventana
     window.addEventListener('resize', calculateVisibleCharacters);
 
-    calculateVisibleCharacters(); // Llama a la función inicialmente
+    calculateVisibleCharacters();
 
     return () => {
+      //Lo quitamos al desmontar
       window.removeEventListener('resize', calculateVisibleCharacters);
     };
   }, [detail.characters]);
 
-  const handlePrev = () => {
+  const handlePrev = () => {  // revisamos el anterior numero de la array, y si lo hay ejecutamos
     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : detail.characters.length - charactersPerPage));
   };
   
-  const handleNext = () => {
+  const handleNext = () => { // revisamos el siguiente numero de la array, y si lo hay ejecutamos
     setCurrentIndex((prevIndex) => (prevIndex < detail.characters.length - charactersPerPage ? prevIndex + 1 : 0));
   };
 
   return (
     <>
       {isLoading ? (
-        <div>
+        <div> {/* Si esta cargando mostramos una pequeña animación */}
           <img className='App-logo' src={portal} alt='portal'></img>
           <p className='loading verd'>Loading...</p>
         </div>

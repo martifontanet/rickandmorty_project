@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom';
 
 const CharactersList = () => {
   const [fullist, setList] = useState([]);
-  const [prev, setPrev] = useState('');
+  const [prev, setPrev] = useState(''); //botones de paginacion
   const [next, setNext] = useState('');
   const [filter, setFilter] = useState([]);
   const [apiKey, setKey] = useState(`https://rickandmortyapi.com/api/character/?page=1`);
-  const [uniqueSpecies, setUniqueSpecies] = useState([]);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -18,16 +17,9 @@ const CharactersList = () => {
         const response = await fetch(apiKey+filter);
         const data = await response.json();
 
-        setList(data.results);
-        setPrev(data.info.prev);
+        setList(data.results); // guardamos los datos de la lista
+        setPrev(data.info.prev); // guardamos los enlaces de las siguientes o anteriores paginas si las hay
         setNext(data.info.next);
-        
-        // Extract species values using map
-        const speciesValues = data.results.map(item => item.species);
-
-        // Count unique species values using Set
-        const uniqueSpeciesSet = [...new Set(speciesValues)];
-        setUniqueSpecies(uniqueSpeciesSet);
 
       } catch (err) {
         console.error(err);
@@ -38,18 +30,12 @@ const CharactersList = () => {
     fetchData();
   }, [apiKey,filter]);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = () => { // Al pasar de pagina subimos arriba de la pagina
     window.scrollTo({ top: 5, behavior: 'smooth' });
   };
 
   return (
     <div className="ListPage CharacterPage">
-      {/* <div id="speciesList">
-        <h2>Unique Species:</h2>
-        {uniqueSpecies.map((species, index) => (
-          <p key={index}>{species}</p>
-        ))}
-      </div> */}
       <h2>Characters List</h2>
       <Filter setFilter = {setFilter} />
       <div className='characterList'>
@@ -59,7 +45,7 @@ const CharactersList = () => {
           </Link>
         ))}
       </div>
-      
+      {/** Botones de paginación */}
       {prev && (
         <button className="button" onClick={() => { setKey(prev); handleButtonClick(); }}>Prev</button>
       )}

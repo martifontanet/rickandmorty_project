@@ -19,16 +19,18 @@ const HomeFetch = () => {
     return numbers;
   };
 
+  //Generamos los 4 numeros aleatorios para cada categoria, y cada una tiene su rango
   const randChars = generateRandomNumbers(1, 826, 4);
   const randLocs = generateRandomNumbers(1, 125, 4);
   const randEpis = generateRandomNumbers(1, 51, 4);
 
+   // Construimos las URLs de la API según los valores generados
   const [apiKey1, setKey1] = useState(`https://rickandmortyapi.com/api/character/[${randChars[0]},${randChars[1]},${randChars[2]},${randChars[3]}]`);
   const [apiKey2, setKey2] = useState(`https://rickandmortyapi.com/api/location/[${randLocs[0]},${randLocs[1]},${randLocs[2]},${randLocs[3]}]`);
   const [apiKey3, setKey3] = useState(`https://rickandmortyapi.com/api/episode/[${randEpis[0]},${randEpis[1]},${randEpis[2]},${randEpis[3]}]`);
   
   
-  useEffect(() => {
+  useEffect(() => { //Ejecutamos los tres fetch pertenientes
     const fetchData1 = async () => {
       try {
         const response = await fetch(apiKey1);
@@ -63,14 +65,14 @@ const HomeFetch = () => {
         }
       };
 
-    fetchData1();
+    fetchData1(); //Los llamamos
     fetchData2();
     fetchData3();
   }, [apiKey1,apiKey2,apiKey3]);
 
   return (
     <div id='ListHome'>
-      <div className="videowrapper">
+      <div className="videowrapper"> {/* Incrustamos el video dentro de un div y le añadimos un texto por encima con css */}
         <div id="fullScreenDiv">
           <video src={videoSource}  id="video" role="presentation" preload="auto" crossorigin="anonymous" loop="1"  autoplay="" className="blur" muted playsinline></video>
           <div id="videoMessage" class="styling"> 
@@ -80,7 +82,7 @@ const HomeFetch = () => {
       </div>
       <div className='margin'>
         <div id='charListHome'>
-            <h2>Characters</h2>
+            <h2>Characters</h2> {/* Renderizamos las distintas categorias con un boton debajo para ir a sus respectivas paginas */}
             <div className='characterList'>
                 {list1.map((character) => (
                 <Link key={character.id} className='linkChar' to={`/character/${character.id}`}>

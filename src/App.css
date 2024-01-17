@@ -463,7 +463,7 @@ strong{
 }
 
 .button-33:disabled {
-  opacity: 0.5; /* Ajusta el valor de opacidad según tus preferencias */
+  opacity: 0.5; 
   cursor: not-allowed;
 }
 
@@ -532,4 +532,9 @@ strong{
 
 .ListPage{
   margin-top: 50px;
+}
+
+.searchList{
+  display: flex;
+
 }

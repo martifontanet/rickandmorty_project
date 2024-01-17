@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import portal from './files/portal.png';
 
-const CharacterDetails = ({ match }) => {
-  const [detail, setDetail] = useState({});
+const CharacterDetails = ({ match }) => { //recuperamos la variable
+  const [detail, setDetail] = useState({}); // array de estado para el fetch
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,10 +21,10 @@ const CharacterDetails = ({ match }) => {
     fetchCharacterDetail();
   }, [match.params.char_Id]);
 
-  const getId = (url) => {
+  const getId = (url) => { //Conseguimos la Id desde el Url
     // Dividimos la URL por las barras "/"
     const parts = url.split('/');
-    // Eliminamos el último elemento (que debería ser una cadena vacía o el último segmento de la URL)
+    // Eliminamos el último elemento, que debería ser una cadena vacía o el último segmento de la URL
     const lastPart = parts.pop();
     
     return lastPart;
@@ -34,10 +34,10 @@ const CharacterDetails = ({ match }) => {
     <>
 
       {isLoading ? (
-        <div>
-        <img className='App-logo' src={portal} alt='portal'></img>
-        <p className='loading verd'>Loading...</p>
-      </div>
+        <div> {/* Si esta cargando mostramos una pequeña animación */}
+          <img className='App-logo' src={portal} alt='portal'></img> 
+          <p className='loading verd'>Loading...</p>
+        </div>
       ) : (
         <>
         <div className='detailPage'>

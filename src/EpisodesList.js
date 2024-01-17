@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 
 const EpisodesList = () => {
   const [list, setList] = useState([]); // variable donde guardaremos los datos del fetch
-  const [prev, setPrev] = useState('');
+  const [prev, setPrev] = useState(''); // guardamos los enlaces de las siguientes o anteriores paginas de datos
   const [next, setNext] = useState('');
-  const [apiKey, setKey] = useState('https://rickandmortyapi.com/api/episode/?page=1');
+  const [apiKey, setKey] = useState('https://rickandmortyapi.com/api/episode/?page=1'); //Inicializamos la variable
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +18,7 @@ const EpisodesList = () => {
 
         setList(data.results);
         setPrev(data.info.prev);
-        setNext(data.info.next);
+        setNext(data.info.next); //guardamos y actualizamos la informacion de los estados
       } catch (err) {
         console.error(err);
       }
@@ -28,7 +28,7 @@ const EpisodesList = () => {
   }, [apiKey]);
 
   const handleSeasonChange = (season) => {
-    if(season === "nothing")
+    if(season === "nothing") //comprovamos la variable para filtrar o no
       setKey(`https://rickandmortyapi.com/api/episode/?page=1`);
     else
       setKey(`https://rickandmortyapi.com/api/episode/?episode=${season}`);
@@ -49,6 +49,7 @@ const EpisodesList = () => {
           </Link>
         ))}
       </div>
+
       {prev && (
         <button className="button" onClick={() => setKey(prev)}>Prev</button>
       )}

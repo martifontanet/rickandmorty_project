@@ -10,8 +10,6 @@ const SearchResults = ({ match }) => {
   const topic = match.params.topic;
   const searchTerm = match.params.searchTerm;
   const [filter, setFilter] = useState([]);
-  const [status, setStatus] = useState([]);
-  let filtro1 = [];
 
   useEffect(() => {
     const fetchSearch = async () => {
@@ -20,11 +18,6 @@ const SearchResults = ({ match }) => {
         const data = await response.json();
         setList(data.results || []); // Asegúrate de que data.results esté definido o asigna un array vacío
 
-        const uniqueStatus = data.results?.map(item => item.status) || [];
-
-        // Count unique species values using Set
-        const status = [...new Set(uniqueStatus)];
-        setStatus(status);
       } catch (error) {
         console.error(error);
       }
@@ -33,10 +26,6 @@ const SearchResults = ({ match }) => {
     fetchSearch();
   }, [topic, searchTerm, filter]);
 
-  const handleTermChange = (event) => {
-    filtro1 = status;
-    setFilter(event.target.value);
-  };
 
   return (
     <div className="ListPage SearchPage">
@@ -54,9 +43,9 @@ const SearchResults = ({ match }) => {
                 {topic === 'character' ? (
                   <Character id={item.id} name={item.name} image={item.image} status={item.status} species={item.species} />
                 ) : topic === 'location' ? (
-                  <Location id={item.id} name={item.name} type={item.type} dimension={item.dimension} />
+                  <div className='searchList'><Location id={item.id} name={item.name} type={item.type} dimension={item.dimension} /><br></br></div>
                 ) : (
-                  <Episode id={item.id} name={item.name} characters={item.characters} date={item.created} />
+                  <div className='searchList'><Episode id={item.id} name={item.name} characters={item.characters} date={item.created} /></div>
                 )}
               </Link>
             ))

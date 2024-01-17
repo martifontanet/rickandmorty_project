@@ -10,20 +10,21 @@ const FilteredCharactersList = () => {
   const [nextPage, setNextPage] = useState('');
   const [filter, setFilter] = useState([]);
   const [apiKey, setApiKey] = useState('https://rickandmortyapi.com/api/character/?page=1');
-  const [uniqueSpecies, setUniqueSpecies] = useState([]);
-  const [filterValue, setFilterValue] = useState(''); // Agregar esta línea
+  const [filterValue, setFilterValue] = useState(''); 
 
-  const location = useLocation();
+  const location = useLocation(); // Hook de ubicación para acceder a la URL actual
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Extraemos el filtro y valor de los parámetros de la URL
         const params = new URLSearchParams(location.search);
         const filterBy = params.get('filter');
         const filterValue = params.get('value');
 
-        setFilterValue(filterValue); // Agregar esta línea
+        setFilterValue(filterValue);
 
+         // Construimos la URL de la API según el filtro y los distintos valores
         const apiUrl = filterBy && filterValue
           ? `https://rickandmortyapi.com/api/character/?${filterBy}=${filterValue}+${filter}`
           : apiKey;
@@ -34,10 +35,6 @@ const FilteredCharactersList = () => {
         setCharacterList(data.results);
         setPrevPage(data.info.prev);
         setNextPage(data.info.next);
-
-        const speciesValues = data.results.map(item => item.species);
-        const uniqueSpeciesSet = [...new Set(speciesValues)];
-        setUniqueSpecies(uniqueSpeciesSet);
 
       } catch (err) {
         console.error(err);
