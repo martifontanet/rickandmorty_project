@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Character from './comp/Character';
 import Filter from './comp/Filter';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useHistory } from 'react-router-dom';
 
 const FilteredCharactersList = () => {
   const [characterList, setCharacterList] = useState([]);
@@ -11,23 +11,20 @@ const FilteredCharactersList = () => {
   const [filter, setFilter] = useState([]);
   const [apiKey, setApiKey] = useState('https://rickandmortyapi.com/api/character/?page=1');
   const [filterValue, setFilterValue] = useState(''); 
+  const history = useHistory();
 
-  const location = useLocation(); // Hook de ubicación para acceder a la URL actual
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Extraemos el filtro y valor de los parámetros de la URL
         const params = new URLSearchParams(location.search);
         const filterBy = params.get('filter');
         const filterValue = params.get('value');
 
         setFilterValue(filterValue);
-
-         // Construimos la URL de la API según el filtro y los distintos valores
-        const apiUrl = filterBy && filterValue
-          ? `https://rickandmortyapi.com/api/character/?${filterBy}=${filterValue}+${filter}`
-          : apiKey;
+        
+        const apiUrl = `https://rickandmortyapi.com/api/character/?${filterBy}=${filterValue}+${filter}`;
 
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -42,9 +39,20 @@ const FilteredCharactersList = () => {
     };
 
     fetchData();
-  }, [apiKey, location.search, filter]);
+  }, [location.search, filter]);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
+    try {
+      const response = await fetch(nextPage);
+      const data = await response.json();
+
+      setCharacterList(data.results);
+      setPrevPage(data.info.prev);
+      setNextPage(data.info.next);
+    } catch (err) {
+      console.error(err);
+    }
+
     window.scrollTo({ top: 5, behavior: 'smooth' });
   };
 
@@ -54,18 +62,18 @@ const FilteredCharactersList = () => {
       <Filter setFilter={setFilter} />
       <div className='characterList'>
         {characterList.map((character) => (
-            <Link key={character.id} className="linkChar" to={`/character/${character.id}`}>
-                <Character key={character.id} id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
-            </Link>
+          <Link key={character.id} className="linkChar" to={`/character/${character.id}`}>
+            <Character key={character.id} id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
+          </Link>
         ))}
       </div>
 
       {prevPage && (
-        <button className="button" onClick={() => { setApiKey(prevPage); handleButtonClick(); }}>Prev</button>
+        <button className="button" onClick={() => { setApiKey(prevPage); handleButtonClick();  }}>Prev</button>
       )}
 
       {nextPage && (
-        <button className="button" onClick={() => { setApiKey(nextPage); handleButtonClick(); }}>Next</button>
+        <button className="button" onClick={() => { setApiKey(nextPage);  handleButtonClick();  }}>Next</button>
       )}
     </div>
   );

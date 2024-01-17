@@ -435,6 +435,16 @@ strong{
   color: white;
 }
 
+.detailCharPage{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.left{
+  margin: auto;
+}
+
 /* CSS button extret de la pagina web https://getcssscan.com/css-buttons-examples */
 .button-33 {
   margin: auto;
