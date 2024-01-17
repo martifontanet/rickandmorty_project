@@ -12,6 +12,27 @@
   text-decoration: none;
 }
 
+.App-logo {
+  margin: 10px; 
+  height: 100px;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 2s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 body{
   text-align: center;
   background-color: #1b202c;
@@ -129,6 +150,7 @@ strong{
   justify-content: center;
   align-items: center;
   height: 50px;
+  margin: 50px 0 50px 0;
 }
 .filterButton{
   height: 80%;
@@ -399,6 +421,10 @@ strong{
   color:#cbdf64;
 }
 
+.verd2{
+  color:#99a55a;
+}
+
 .blau{
   color:#12aec5;
 }
@@ -502,4 +528,8 @@ strong{
 
 .detailtxt{
   margin: 30px auto 30px auto;
+}
+
+.ListPage{
+  margin-top: 50px;
 }

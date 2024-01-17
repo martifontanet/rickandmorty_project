@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Character from './comp/Character';
 import Filter from './comp/Filter';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
 const FilteredCharactersList = () => {
   const [characterList, setCharacterList] = useState([]);
@@ -57,7 +57,9 @@ const FilteredCharactersList = () => {
       <Filter setFilter={setFilter} />
       <div className='characterList'>
         {characterList.map((character) => (
-          <Character key={character.id} id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
+            <Link key={character.id} className="linkChar" to={`/character/${character.id}`}>
+                <Character key={character.id} id={character.id} name={character.name} image={character.image} status={character.status} species={character.species} />
+            </Link>
         ))}
       </div>
 

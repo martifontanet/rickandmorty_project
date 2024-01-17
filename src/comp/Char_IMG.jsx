@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import portal from '../files/portal.png';
 
 const Char_IMG = ({ character }) => {
   const [Char_Info, setInfo] = useState(null); // variable donde guardaremos los datos del fetch
@@ -26,7 +27,10 @@ const Char_IMG = ({ character }) => {
   return (
     <div id="">
       {isLoading ? (
-        <p>Loading...</p>
+        <div>
+          <img className='App-logo' src={portal} alt='portal'></img>
+          <p className='loading verd'>Loading...</p>
+        </div>
       ) : (
         // Linkeamos la targeta con la info suficiente para ir a los detalles 
         <Link className="link" to={`/character/${Char_Info.id}`}> 

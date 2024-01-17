@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Char_IMG from './comp/Char_IMG';
+import portal from './files/portal.png';
 
 const LocationDetails = ({ match }) => {
   const [locationData, setLocationData] = useState({});
@@ -57,7 +58,10 @@ const LocationDetails = ({ match }) => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <div>
+          <img className='App-logo' src={portal} alt='portal'></img>
+          <p className='loading verd'>Loading...</p>
+        </div>
       ) : (
         <>
         <div className='detailPage'>
@@ -67,8 +71,8 @@ const LocationDetails = ({ match }) => {
           <h1 className='blau'>{locationData.name}</h1>
           <article id={`location_${locationData.id}`}>
             <div>
-              <h3 className="detailSpecies">Type: {locationData.type}</h3>
-              <h3 className="detailLocation">Dimension: {locationData.dimension}</h3>
+              <h3 className="detailSpecies"><span className='verd2'>Type:</span> {locationData.type}</h3>
+              <h3 className="detailLocation"><span className='verd2'>Dimension:</span> {locationData.dimension}</h3>
               <h3 className="detailButton">Residents</h3>
               <div className="characterList" ref={characterListRef}>
                 <button className='button-33' onClick={handlePrev} disabled={currentIndex === 0}>&lt;</button>

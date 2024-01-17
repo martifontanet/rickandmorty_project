@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Char_IMG from './comp/Char_IMG';
+import portal from './files/portal.png';
 
 const EpisodeDetails = ({ match }) => {
   const [detail, setDetail] = useState({});
@@ -65,7 +66,10 @@ const EpisodeDetails = ({ match }) => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <div>
+          <img className='App-logo' src={portal} alt='portal'></img>
+          <p className='loading verd'>Loading...</p>
+        </div>
       ) : (
         <>
           <div className="detailPage">
@@ -73,9 +77,9 @@ const EpisodeDetails = ({ match }) => {
             <p  className='return a verd'><i className={`material-icons`}>arrow_backward</i> All episodes  </p>
           </Link>
             <div id={`episode_${detail.id}`}>
-              <h2 className="detailSpecies">Season {season} - Episode {episode}</h2>
+              <h2 className="detailSpecies">Season {season} - <span className='verd2'>Episode {episode}</span></h2>
               <h1 className='blau'>{detail.name}</h1>
-              <p className="detailGender">Release date : {detail.air_date}</p>
+              <p className="detailGender"><span className='verd2'>Release date :</span> {detail.air_date}</p>
               <p className="detailButton">Characters featured</p>
               <div className="characterList" ref={characterListRef}>
                 <button className='button-33' onClick={handlePrev} disabled={currentIndex === 0}>&lt;</button>

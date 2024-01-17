@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import portal from './files/portal.png';
 
 const CharacterDetails = ({ match }) => {
   const [detail, setDetail] = useState({});
@@ -33,7 +34,10 @@ const CharacterDetails = ({ match }) => {
     <>
 
       {isLoading ? (
-        <p>Loading...</p>
+        <div>
+        <img className='App-logo' src={portal} alt='portal'></img>
+        <p className='loading verd'>Loading...</p>
+      </div>
       ) : (
         <>
         <div className='detailPage'>
@@ -45,12 +49,12 @@ const CharacterDetails = ({ match }) => {
             <img className="detailImg" src={detail.image} alt={detail.name} />
             <div className='margin2'>
               <Link className='link returnBut a' to={`/charactersfilt?filter=species&value=${detail.species}`}>
-                <h3 className="detailtxt return">Species : {detail.species} <i className={`material-icons`}>arrow_forward</i></h3>
+                <h3 className="detailtxt return"><span className='verd2'>Species :</span> {detail.species} <i className={`material-icons`}>arrow_forward</i></h3>
               </Link>
               <Link className='link returnBut a' to={`/charactersfilt?filter=gender&value=${detail.gender}`}>
-                <h3 className="detailtxt return">Gender : {detail.gender} <i className={`material-icons`}>arrow_forward</i></h3>
+                <h3 className="detailtxt return"><span className='verd2'>Gender :</span> {detail.gender} <i className={`material-icons`}>arrow_forward</i></h3>
               </Link>
-              <h3 className="detailtxt">Status : {detail.status}</h3>
+              <h3 className="detailtxt"><span className='verd2'>Status :</span> {detail.status}</h3>
             </div>
             <div>
               <h3>

@@ -29,14 +29,19 @@ function App() {
       const content = document.getElementById('content');
       const sticky = header.offsetTop;
   
-      if (window.scrollY > sticky) {
-        header.classList.add('fixed');
-        content.classList.add('fixed');
-      } else {
-        header.classList.remove('fixed');
-        content.classList.remove('fixed');
-      }
-    };
+       // Verificar si la altura total de la página es menor que la altura de la ventana
+       const isSmallPage = document.body.scrollHeight <= window.innerHeight;
+
+       if (!isSmallPage) {
+         if (window.scrollY > sticky) {
+           header.classList.add('fixed');
+           content.classList.add('fixed');
+         } else {
+           header.classList.remove('fixed');
+           content.classList.remove('fixed');
+         }
+       }
+     };
   
     window.addEventListener('scroll', handleScroll);
       // Desregistramos el evento de scroll cuando al desmontar el componente
